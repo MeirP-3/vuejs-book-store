@@ -40,7 +40,11 @@ function getNext(book) {
 
 function saveBook(book) {
   var idx = books.findIndex(currBook => currBook.id === book.id)
-  books.splice(idx, 1, book);
+  if (idx > -1) {
+    books.splice(idx, 1, book);
+  } else {
+    books.push(book);
+  }
 }
 
 // Used to create local data with no AJAX

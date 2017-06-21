@@ -80,13 +80,11 @@ export default {
             this.selectedBook = bookService.getNext(this.selectedBook);
         },
         editBook(book) {
-            console.log('Editing the book', book)
             this.editedBook = book;
         },
         deleteBook(book) {
             bookService.deleteBook(book);
         },
-        // TODO: fix the bug !!! now it replaces the last book
         saveBook(book) {
             bookService.saveBook(book);
             this.editedBook = null;
