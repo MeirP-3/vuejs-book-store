@@ -5,7 +5,7 @@
                 <span>&times;</span>
             </div>
             <div class="img-and-small-details">
-                <h1>Details of: {{book.title}}</h1>
+                <h1>{{book.title}}</h1>
                 <img src="http://via.placeholder.com/250x150">
                 <h3>${{book.price}}</h3>
                 <button class="next-book-details" @click="requestNextBook"> &rarr; </button>

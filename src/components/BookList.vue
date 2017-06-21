@@ -1,6 +1,5 @@
 <template>
     <section v-if="books">
-        <h1>hello!!!</h1>
         <book-filter @filterSet="setFilter">
             </book-filter>
         <cart v-if="isCartShown" @closeCart="closeCart" @add="addToCart" @substract="substractFromCart" @clearItemFromCart="clearItemFromCart">
@@ -15,7 +14,7 @@
         <book-details v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
             </book-details>
     
-        <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook">
+        <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancelEdit="cancelEdit">
             </book-edit>
     </section>
 </template>
@@ -77,35 +76,39 @@ export default {
             this.selectedBook = null;
         },
         selectNext() {
-            this.selectedBook = bookService.getNext(this.selectedBook);
+            this.selectedBook = bookService.getNext(this.selectedBook)
         },
         editBook(book) {
-            this.editedBook = book;
+            this.editedBook = book
         },
-        deleteBook(book) {
-            bookService.deleteBook(book);
+        cancelEdit() {
+            this.editedBook = null
+            this.isCreateMode =false
         },
         saveBook(book) {
-            bookService.saveBook(book);
-            this.editedBook = null;
-            this.isCreateMode = false;
+            bookService.saveBook(book)
+            this.editedBook = null
+            this.isCreateMode = false
+        },
+        deleteBook(book) {
+            bookService.deleteBook(book)
         },
         addToCart(book) {
-            cartService.addToCart(book);
-            this.isCartShown = true;
+            cartService.addToCart(book)
+            this.isCartShown = true
         },
         substractFromCart(book) {
-            cartService.substractFromCart(book.id);
+            cartService.substractFromCart(book.id)
             console.log('sent')
         },
         clearItemFromCart(book) {
-            cartService.clearItem(book);
+            cartService.clearItem(book)
         },
         closeCart() {
-            this.isCartShown = false;
+            this.isCartShown = false
         },
         setFilter(filter) {
-            this.filter = filter;
+            this.filter = filter
         }
     },
 }
