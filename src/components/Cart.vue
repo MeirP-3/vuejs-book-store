@@ -4,7 +4,7 @@
             <div class="close" @click="closeMe">
                 <span>&times;</span>
             </div>
-            <cart-item v-for="item in items" :book="item" @add="add(item)" @substract="substract(item)" @clear="clear(item)">
+            <cart-item v-for="item in items" :key="item.id" :book="item" @add="add(item)" @substract="substract(item)" @clear="clear(item)">
             </cart-item>
         </ul>
     </div>

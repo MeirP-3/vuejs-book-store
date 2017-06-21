@@ -1,73 +1,70 @@
 <template>
   <div class="hello">
     <img src="../assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank">Forum</a>
-      </li>
-      <li>
-        <a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank">Twitter</a>
-      </li>
-      <br>
-      <li>
-        <a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a href="http://router.vuejs.org/" target="_blank">vue-router</a>
-      </li>
-      <li>
-        <a href="http://vuex.vuejs.org/" target="_blank">vuex</a>
-      </li>
-      <li>
-        <a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a>
-      </li>
-      <li>
-        <a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a>
-      </li>
-    </ul>
+    <h1>Form Sample</h1>
+
+    <form>
+    <p style="white-space: pre">{{ message }}</p>
+    <textarea autofocus v-model="message" placeholder="add multiple lines"></textarea>
+<br/>
+    <input type="checkbox" value="Jack" v-model="checkedNames" />  Jack
+    <input type="checkbox" value="John" v-model="checkedNames" /> John
+<br/>
+    <input type="radio" value="One" v-model="picked"> One
+    <input type="radio" value="Two" v-model="picked"> Two
+<br/>
+    <select tabindex="19" v-model="selectedLetter" multiple>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+<br/>
+    <select v-model="selected">
+      <!-- inline object literal -->
+      <option :value="{ name: 'Englnad' }">en</option>
+      <option :value="{ name: 'Israel' }">il</option>
+    </select>
+<br/>
+
+
+<br />
+
+
+
+    <button type="submit" @click="save">Save</button>
+
+    </form>
+
   </div>
 </template>
 
 <script>
+
+import {eventBus} from '@/services/bus.service.js'
+
+
 export default {
   name: 'hello',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      age: 5,
+      message : 'Hi!',
+      checkedNames: [],
+      picked: null,
+      selected: null,
+      selectedLetter: []
+
+    }
+  },
+  methods: {
+    save() {
+      console.log(this.$data);
+      eventBus.$emit('saved', this.$data);
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>

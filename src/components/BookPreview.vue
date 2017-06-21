@@ -8,6 +8,8 @@
         <button @click.stop="addToCart">+</button>
         <span v-if="book.quantity">{{book.quantity}}</span>
         <button @click.stop="substractFromCart">-</button>
+        <br/>
+        <router-link :to="`/book/${book.id}`">View Book</router-link>
     </li>
 </template>
 

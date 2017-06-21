@@ -34,7 +34,7 @@ function deleteBook(book) {
 function getNext(book) {
     // select next in a cyclic way
     var idx = books.indexOf(book);
-    return (idx < books.length-1)?  
+    return (idx < books.length-1)?
           books[idx+1] : books[0];
 }
 
@@ -65,6 +65,7 @@ function generateBook(skill, i) {
 
 export default {
   getBooks,
+  getBookById,
   deleteBook,
   getNext,
   saveBook
