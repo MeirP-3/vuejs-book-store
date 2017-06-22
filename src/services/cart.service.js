@@ -20,6 +20,7 @@ const substractFromCart = itemId => {
     if( cartItems[itemIndex].quantity > 1 ) {
       cartItems[itemIndex].quantity--;
     } else {
+      cartItems[itemIndex].quantity = 0;
       cartItems.splice(itemIndex, 1);
     }
   }

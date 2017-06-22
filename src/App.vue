@@ -8,15 +8,12 @@
 // import BookList from './components/BookList'
 export default {
   name: 'app'
-  //, components: {
-  //   BookList
-  // }
 }
 </script>
 
 <style>
 body {
-  background: #efefef;
+  background: #ccc;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 

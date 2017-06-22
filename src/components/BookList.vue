@@ -1,21 +1,22 @@
 <template>
     <section v-if="books">
         <book-filter @filterSet="setFilter">
-            </book-filter>
+        </book-filter>
+        <button @click="isCartShown = !isCartShown">cart</button>
         <cart v-if="isCartShown" @closeCart="closeCart" @add="addToCart" @substract="substractFromCart" @clearItemFromCart="clearItemFromCart">
-            </cart>
+        </cart>
     
         <h2>We have {{books.length}} Books</h2>
         <button @click="isCreateMode=true">+</button>
         <ul>
-            <book-preview v-for="currBook in booksToDisplay" @click.native="selectBook(currBook)" @edit="editBook(currBook)" @delete="deleteBook(currBook)" @addToCart="addToCart(currBook)" @substractFromCart="substractFromCart(currBook)" :book="currBook">
-                </book-preview>
+            <book-preview v-for="currBook in booksToDisplay" :key="currBook.id" @click.native="selectBook(currBook)" @edit="editBook(currBook)" @delete="deleteBook(currBook)" @addToCart="addToCart(currBook)" @substractFromCart="substractFromCart(currBook)" :book="currBook">
+            </book-preview>
         </ul>
         <book-details v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
-            </book-details>
+        </book-details>
     
         <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancelEdit="cancelEdit">
-            </book-edit>
+        </book-edit>
     </section>
 </template>
 
@@ -83,7 +84,7 @@ export default {
         },
         cancelEdit() {
             this.editedBook = null
-            this.isCreateMode =false
+            this.isCreateMode = false
         },
         saveBook(book) {
             bookService.saveBook(book)
@@ -95,11 +96,9 @@ export default {
         },
         addToCart(book) {
             cartService.addToCart(book)
-            this.isCartShown = true
         },
         substractFromCart(book) {
             cartService.substractFromCart(book.id)
-            console.log('sent')
         },
         clearItemFromCart(book) {
             cartService.clearItem(book)
